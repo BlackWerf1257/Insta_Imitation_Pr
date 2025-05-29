@@ -1,0 +1,12 @@
+.App-container { /* <-- 이 클래스 이름을 사용 */
+  display: flex; /* <-- Flexbox 컨테이너로 설정 */
+  flex-direction: column; /* <-- 자식 요소들을 세로로 정렬 (NavBar, main, Footer 순) */
+  min-height: 100vh; /* <-- 화면 전체 높이를 최소로 가짐 (푸터가 항상 하단에 붙도록) */
+  background-color: #dcf1fa; /* <-- 전체 페이지의 기본 배경색 (옵션) */
+}
+
+.Main-container-class {
+  height: calc(100vh - 60px - 20px - 70px - 50px - 30px);
+  margin-top: 50px;
+  border: 1px solid #010101;
+}

@@ -1,0 +1,25 @@
+/* About.css */
+.view-class {
+    margin-left: 30px;
+}
+.button-class {
+    width: 150px;
+    border-radius: 5px;
+}
+.button-class:hover {
+        transform: translateY(-3px);
+}
+
+.item-class {
+    margin-top: 50px;
+}
+
+.item-button-class {
+        border-radius: 5px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        padding: 5px 5px;
+}
+.item-button-class:hover {
+        transform: translateY(-3px);
+}
