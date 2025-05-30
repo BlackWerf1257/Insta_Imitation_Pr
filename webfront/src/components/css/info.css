@@ -1,6 +1,28 @@
 .InfoBar-Class {
-    height: 200px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    min-height: 20px;
     flex-shrink: 0;
+}
+
+.item-button-class {
+        display: inline-block;
+        border-radius: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px 10px;
+        background-color: white;
+        margin-left: 30px;
+        text-align: center;
+}
+
+.navigation-button-class {
+    display: inline-block; /* 버튼처럼 너비/높이/패딩을 적용하기 위해 */
+    min-width: 40px;
+    padding: 10px 10px; /* 내부 여백 (위아래 10px, 좌우 20px) */
+    text-align: center;
+    /*background-color: transparent;*/
+    background-color: rgb(255, 251, 251);
+    min-width: 60px;
+    transition: transform 0.2s ease; /* 호버 애니메이션 */
+    
+    border-radius: 20px;
 }

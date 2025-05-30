@@ -1,0 +1,38 @@
+/*justify-content : 세로 정렬 align-items: 가로 정렬*/
+.login-page-parent-class {
+    display: flex;
+    flex-direction: column;
+    background-color: #e8f7fa;
+    margin: auto;
+    margin-top: calc(100vh / 10);
+    width: calc(100vw / 4);
+    height: calc(100vh / 2);
+    justify-content: center;
+    gap: 100px;
+    
+}
+
+.keydata-parent-class {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 60px;
+    gap: 30px;
+    
+}
+
+.input-class {
+    width: 200px;
+    align-self: flex-end;
+    padding: 8px 10px;
+}
+
+.login-button-class-2 {
+    display: flex;
+    border-radius: 6px;
+    width: calc(100vw / 15);
+    height: 50px;
+    justify-content: center;
+    align-self: center;
+}

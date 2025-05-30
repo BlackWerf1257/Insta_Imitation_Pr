@@ -39,11 +39,22 @@
     margin-right: 40px;
 }
 
+.login-button-parent-class {
+    display: flex;
+    height: 50px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
 .login-button-class {
-    margin-top: 30px;
-    margin-right: 30px;
     display: flex;
     justify-content: flex-end;
+    padding: 10px 10px;
+    background-color: white;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 5px;
+    height: 20px;
+    margin-right: 40px;
 }
 
 .navigation-button-class {
@@ -55,6 +66,7 @@
     background-color: rgb(255, 251, 251);
     min-width: 60px;
     transition: transform 0.2s ease; /* 호버 애니메이션 */
+    margin-right: 10px;
     
     border-radius: 20px;
 }

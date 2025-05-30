@@ -1,13 +1,12 @@
 /* About.css */
 .view-class {
-    margin-left: 30px;
-}
-.button-class {
-    width: 150px;
-    border-radius: 5px;
-}
-.button-class:hover {
-        transform: translateY(-3px);
+    display: flex;
+    align-items: flex-start;
+    width: 80%;
+    margin-left: 60px;
+    margin-top: 30px;
+    flex-direction: column;
+    
 }
 
 .item-class {
@@ -16,10 +15,25 @@
 
 .item-button-class {
         border-radius: 5px;
-        margin-top: 5px;
         margin-bottom: 10px;
+        width: 130px;
         padding: 5px 5px;
 }
 .item-button-class:hover {
         transform: translateY(-3px);
+}
+
+.item-button-class2 {
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 5px 5px;
+}
+.item-button-class2:hover {
+        transform: translateY(-3px);
+}
+
+
+.data-Text-Class {
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
