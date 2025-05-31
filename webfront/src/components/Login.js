@@ -15,7 +15,11 @@ function Login(){
          const logEvent = () => {
             if(idValue !== "" && pwdValue !== "")
             {
-                  navigate('/', { state: { isLogged: false, userId: idValue } });
+                //임시용
+                  navigate('/', { state: { isLogged: true, userId: idValue } });
+            }
+            else {
+                alert('ID와 비밀번호를 입력해주세요');
             }
          }
 
@@ -36,15 +40,6 @@ function Login(){
         {/*LoginEvent(idValue, pwdValue)*/}
     </div>
     );
-}
-
-function LoginEvent(IdValue, PwValue){
-    if(IdValue === "" || PwValue === "")
-        alert("ID와 비밀번호를 입력해주세요");
-    else 
-    {
-        //navigate("/", {state: {value: 'true'}});
-    }
 }
 
 export default Login;

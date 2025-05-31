@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-import React from 'react';
 import './components/css/About.css';
 
 // 외부페이지는 a 사용
@@ -14,8 +12,8 @@ function About(){
 
         <h3 className='item-class'> 사용한 기술 스택 </h3>
         <ul>
-            <li className='data-Text-Class'> <b>언어</b>: CSS, React, MySQL </li>
-            <li className='data-Text-Class'> <b>툴</b> : Visual Studio Code, Spring, MySQL Workbench</li>
+            <li className='data-Text-Class'> <b>언어</b>: CSS, React, SQLite(예정) </li>
+            <li className='data-Text-Class'> <b>툴</b> : Visual Studio Code, Spring(예정)</li>
         </ul>
 
         <h3/> 연락처

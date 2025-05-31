@@ -48,21 +48,38 @@
 .login-button-class {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     padding: 10px 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 15px;
+    text-decoration: none; /* 밑줄 제거 */
+    margin-top: 5px;
+    min-height: 20px;
+    min-width: 60px;
+    margin-right: 40px;
+}
+.logout-button-class {
+    display: flex;
+    justify-content: flex-end;
+    
     background-color: white;
     border-radius: 6px;
     text-align: center;
     margin-top: 5px;
-    height: 20px;
+    height: 40px;
     margin-right: 40px;
 }
+
 
 .navigation-button-class {
     display: inline-block; /* 버튼처럼 너비/높이/패딩을 적용하기 위해 */
     min-width: 40px;
     padding: 10px 10px; /* 내부 여백 (위아래 10px, 좌우 20px) */
     text-align: center;
-    /*background-color: transparent;*/
+    text-decoration: none;
     background-color: rgb(255, 251, 251);
     min-width: 60px;
     transition: transform 0.2s ease; /* 호버 애니메이션 */

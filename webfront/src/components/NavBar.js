@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import './css/NavBar.css';
 
 
-function NavBar(){
-    const [logState, setState] = React.useState(false); /* 로그인 여부 */
+function NavBar({isLogged, onLogout}){
     const [searchValue, SetSearchValue] = React.useState(''); /* 검색창 데이터 */
 
     /* 검색값 업데이트용 */
@@ -16,15 +15,15 @@ function NavBar(){
 
     return (
         <>
-        <h1 to="/" className="navbar-title-class"> InstaClone </h1>
+        <h1 className="navbar-title-class"> InstaClone </h1>
         <div className='navigation-parent-class'>
-            { logState ? <LoggedNavButtonFunc/> : <LogOutedNavButtonFunc/> }
+            { isLogged ? <LoggedNavButtonFunc/> : <LogOutedNavButtonFunc/> }
             <div className='searchbar-parent-class'>
                 <input className='searchbar-class' type='text' onChange={updateSearchValue}/>
                 <button className='search-button-class' onClick={() => Search(searchValue)}> 검색하기 </button>
             </div>
         </div>
-            <LoginBtnFunc logStatus={logState}/>
+            <LoginBtnFunc isLogged={isLogged} onLogout={onLogout}/>
         </>
       );
 }
@@ -68,14 +67,15 @@ function LogOutedNavButtonFunc(){
 }
 
 //중괄호로 감싸야 함(중괄호 미 사용시 빈 경우가 아닌경우 true로 처리해버리기 때문)
-function LoginBtnFunc({logStatus}){
+function LoginBtnFunc({isLogged, onLogout}){
     return (
         <div className='login-button-parent-class'>
-        {logStatus ? (<Link to="/logout" className='login-button-class'>로그아웃</Link>) : 
+        {isLogged ? (<button className='login-button-class' onClick={onLogout}>로그아웃</button>) : 
         ( <Link to="/login" className='login-button-class'>로그인</Link>)}
         </div>
     )
 }
+
 
 
 export default NavBar;
