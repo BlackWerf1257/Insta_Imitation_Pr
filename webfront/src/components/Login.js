@@ -1,27 +1,36 @@
 import './css/Login.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 
 
 function Login(){
-        const [idValue, SetIdValue] = React.useState(''); /* 검색창 데이터 */
-        const [pwdValue, SetPwdValue] = React.useState(''); /* 검색창 데이터 */
+        const [idValue, SetIdValue] = React.useState('');
+        const [pwdValue, SetPwdValue] = React.useState('');
+        const [isLoginSucceed, SetLoginBool] = useState(false);
+        const [data, SetData] = useState('');
     
         const updateIdValue = event => { SetIdValue(event.target.value); };
-         const updatePwdValue = event => { SetPwdValue(event.target.value); };
+        const updatePwdValue = event => { SetPwdValue(event.target.value); };
+
 
          const navigate = useNavigate();
 
          const logEvent = () => {
             if(idValue !== "" && pwdValue !== "")
             {
-                //임시용
-                  navigate('/', { state: { isLogged: true, userId: idValue } });
-            }
-            else {
-                alert('ID와 비밀번호를 입력해주세요');
-            }
-         }
+                fetch(`https://myreactstudy1.dothome.co.kr/Login.php?id=${idValue}&pwd=${pwdValue}`, { method: 'POST',})
+                .then((response) => {
+                if(!response.ok)
+                console.log(response.status);
+                else
+                    return response.json();
+                })
+                .then((result) => {
+                    if(result['status'] == 'succeed')
+                        navigate('/', { state: { isLogged: true, userId: idValue } });
+                })
+    }
+    }
 
     return(
     <div className='login-page-parent-class'>

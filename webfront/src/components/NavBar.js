@@ -19,7 +19,7 @@ function NavBar({isLogged, onLogout}){
         <div className='navigation-parent-class'>
             { isLogged ? <LoggedNavButtonFunc/> : <LogOutedNavButtonFunc/> }
             <div className='searchbar-parent-class'>
-                <input className='searchbar-class' type='text' onChange={updateSearchValue}/>
+                <input className='searchbar-class' type='text' placeholder='검색할 내용을 입력해주세요' onChange={updateSearchValue}/>
                 <button className='search-button-class' onClick={() => Search(searchValue)}> 검색하기 </button>
             </div>
         </div>
@@ -43,26 +43,26 @@ function Search(searchValue){
 /**/
 function LoggedNavButtonFunc(){
                 return(
-                <>
-                        <nav className="">
+                <div className="navigation-left-class">
+                        <nav>
                         <Link to="/" className='navigation-button-class'>홈</Link>
                         <Link to="/search" className='navigation-button-class'>탐색</Link>
                         <Link to="/upload" className='navigation-button-class'>업로드</Link>
                         <Link to="/alarm" className='navigation-button-class'>알림</Link>
                         <Link to="/msg" className='navigation-button-class'>메시지</Link>
                         </nav>
-                </>
+                </div>
                 )
 }
 function LogOutedNavButtonFunc(){
 
             return(
-            <>
-                    <nav className="">
+            <div className="navigation-left-class">
+                    <nav>
                     <Link to="/" className='navigation-button-class'>홈</Link>
                     <Link to="/search" className='navigation-button-class'>탐색</Link>
                     </nav>
-            </>
+            </div>
             )
 }
 
@@ -71,10 +71,21 @@ function LoginBtnFunc({isLogged, onLogout}){
     return (
         <div className='login-button-parent-class'>
         {isLogged ? (<button className='login-button-class' onClick={onLogout}>로그아웃</button>) : 
-        ( <Link to="/login" className='login-button-class'>로그인</Link>)}
+        ( 
+        <>
+            <Link to="/login" className='login-button-class'>로그인</Link>
+            <Register/>
+        </>
+        )}
         </div>
     )
 }
+
+function Register(){
+    return(
+        <Link to='/register' className='login-button-class'>회원가입</Link>
+    )
+};
 
 
 
