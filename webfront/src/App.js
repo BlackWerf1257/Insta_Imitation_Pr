@@ -1,5 +1,6 @@
 import './App.css';
 import { useLocation, Routes, Route, useNavigate} from 'react-router-dom';
+import { useContext, useState, useEffect } from 'react';
 import NavBar from './components/NavBar';
 //import Root from './components/Root';
 import Footer from './components/Footer';
@@ -8,7 +9,8 @@ import Login from './components/Login';
 import PostsGrid from './components/MainPage';
 import About from './About';
 import Register from './components/Register';
-import { useContext, useState, useEffect } from 'react';
+import NewPost from './components/NewPost';
+import ViewPost from './components/ViewPost';
 //index에서 BrowserRouter로 감쌈(Router 사용 금지)
 
 //
@@ -76,6 +78,9 @@ const Logout = () => {
             <Route path="/about" element={<About/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
+            <Route path="/newPost" element={<NewPost/>} />
+            <Route path="/post/:id" element={<ViewPost/>} />
+            
         </Routes>
         <>
         </>

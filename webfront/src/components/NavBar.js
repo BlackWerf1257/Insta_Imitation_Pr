@@ -47,7 +47,6 @@ function LoggedNavButtonFunc(){
                         <nav>
                         <Link to="/" className='navigation-button-class'>홈</Link>
                         <Link to="/search" className='navigation-button-class'>탐색</Link>
-                        <Link to="/upload" className='navigation-button-class'>업로드</Link>
                         <Link to="/alarm" className='navigation-button-class'>알림</Link>
                         <Link to="/msg" className='navigation-button-class'>메시지</Link>
                         </nav>
@@ -70,22 +69,24 @@ function LogOutedNavButtonFunc(){
 function LoginBtnFunc({isLogged, onLogout}){
     return (
         <div className='login-button-parent-class'>
-        {isLogged ? (<button className='login-button-class' onClick={onLogout}>로그아웃</button>) : 
+        {isLogged ? 
+        <>
+            <button className='login-button-class' onClick={onLogout}>로그아웃</button>
+            <Link to="/newPost" className='login-button-class'>글 작성하기</Link>
+        </>
+         :
         ( 
         <>
             <Link to="/login" className='login-button-class'>로그인</Link>
-            <Register/>
+            <Link to='/register' className='login-button-class'>회원가입</Link>
+            
         </>
         )}
         </div>
     )
 }
 
-function Register(){
-    return(
-        <Link to='/register' className='login-button-class'>회원가입</Link>
-    )
-};
+
 
 
 

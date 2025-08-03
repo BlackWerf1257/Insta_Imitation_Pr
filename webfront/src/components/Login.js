@@ -28,6 +28,7 @@ function Login(){
                 .then((result) => {
                     if(result['status'] == 'succeed')
                         navigate('/', { state: { isLogged: true, userId: idValue } });
+                    else alert('ID나 비밀번호가 일치하지않습니다')
                 })
     }
     }

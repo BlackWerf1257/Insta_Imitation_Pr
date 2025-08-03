@@ -7,16 +7,15 @@
 
 .navigation-parent-class {
     display: flex;
-    /*justify-content: space-between;*/
+    justify-content: flex-start;
     margin-top: 30px;
-    margin-left: 60px;
     gap: 30px;
 }
 
 .navigation-left-class {
     display: flex; /* 빼먹으면 작동 X */
-    margin-left: 100px;
     margin-top: 20px;
+    margin-left: 100px;
     width: 600px;
     gap: 30px;
     /*flex-basis: 30px; /* 아이템의 기본 크기 */

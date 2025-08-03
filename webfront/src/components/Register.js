@@ -1,29 +1,91 @@
 import './css/Register.css';
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom'; 
 
 function Register(){
     const navigate = useNavigate();
 
-    const [idValue, SetIdValue] = React.useState('');
-    const [pwdValue, SetPwdValue] = React.useState('');
-    const [userNameValue, SetUserNameValue] = React.useState('');
+    const [idValue, SetIdValue] = useState('');
+    const [pwdValue, SetPwdValue] = useState('');
+    const [userNameValue, SetUserNameValue] = useState('');
+
+    const [profileImg, SetProfileImg] = useState([]);
+    const [preProfileImg, SetPreProfileImg] = useState([]);
 
 
     const updateIdValue = event => { SetIdValue(event.target.value); };
     const updatePwdValue = event => { SetPwdValue(event.target.value); };
     const updateUserNameValue = event => { SetUserNameValue(event.target.value); };
 
-    const registerEvent = () => {
-            if(idValue !== "" && pwdValue !== "" && userNameValue !== "")
+    const updateProfileImgEvent = event => {
+        const file = event.target.files[0];
+
+        //파일 확장자 확인
+        switch(file.type){
+    	case 'image/jpeg':
+    	case 'image/jpg':
+    	//case 'gif':
+    	case 'image/png':
+                 break;
+        default:
+            alert('프로필 사진은 jpeg, jpg, png타입의 이미지만 가능합니다');
+            return;
+        }
+
+        SetProfileImg(file);
+        encodeFileToBase64(file).then((base64) => SetPreProfileImg(base64));
+    }
+
+    const encodeFileToBase64 = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        return new Promise((resolve) => {
+            SetPreProfileImg(reader.result);
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+            reader.onerror = (error) => {
+                console.log(error);
+            }
+        })
+    }
+
+
+    const registerEvent = async () => {
+            if(idValue !== "" && pwdValue !== "" && userNameValue !== "" && profileImg != null)
             {
+                const formData = new FormData();
+                formData.append('id', idValue); // user_id 값
+                formData.append('pwd', pwdValue);  // user_pw 값
+                formData.append('userName', userNameValue);
+                formData.append('profileImg', profileImg);
+
+
                 //임시용
-                  navigate('/');
+                try
+                {
+                const response = await fetch('https://myreactstudy1.dothome.co.kr/Register.php', 
+                    { method: 'POST',
+                        body: formData,
+                    })
+                if(!response.ok)
+                {
+                    alert(response.message);
+                }
+
+                const result = await response.json(); //비동기로 JSON에서 변환
+                alert(result.message);
+                
+                    if(result.status == 'succeed')
+                        navigate('/');
+
+                }
+                catch(error)
+                {
+                    console.log(error);
+                }
             }
-            else {
-                alert('항목을 전부 입력해주세요');
-            }
-         }
+        }
 
     return(
     <div className='register-page-parent-class'>
@@ -44,8 +106,11 @@ function Register(){
         </div>
         {/* 프로필 사진 */}
         <div className = 'register-keydata-parent-class'>
-            <p className=''> <b>닉네임:</b> </p>
-            <input type='file' accept='image/*' name='profileImg' className="input-class" onChange={''}></input>
+            <div className='preview-img-class'>
+                <p className=''> <b>프로필 사진</b> </p>
+                {preProfileImg ? (<img src={preProfileImg} alt="미리보기" className='preview-img-class'/>) : null}
+            </div>
+            <input type='file' accept='image/*' name='profileImg' className="input-class" onChange={updateProfileImgEvent}></input>
         </div>
 
         <button className='register-button-class' onClick={registerEvent}> 회원가입 </button>
@@ -53,5 +118,4 @@ function Register(){
     </div>
     );
 }
-
 export default Register;
