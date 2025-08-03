@@ -1,5 +1,6 @@
 import './App.css';
 import { useLocation, Routes, Route, useNavigate} from 'react-router-dom';
+import { useContext, useState, useEffect } from 'react';
 import NavBar from './components/NavBar';
 //import Root from './components/Root';
 import Footer from './components/Footer';
@@ -7,7 +8,9 @@ import Info from './components/InfoBar';
 import Login from './components/Login';
 import PostsGrid from './components/MainPage';
 import About from './About';
-import { useContext, useState, useEffect } from 'react';
+import Register from './components/Register';
+import NewPost from './components/NewPost';
+import ViewPost from './components/ViewPost';
 //index에서 BrowserRouter로 감쌈(Router 사용 금지)
 
 //
@@ -53,14 +56,13 @@ useEffect(() => {
 
 const Logout = () => {
     if (isLogged && userName !== '') {
-    // 1. sessionStorage에 명시적으로 'false'를 저장하여 로그인 상태를 강제로 해제
-    //    removeItem 후 setItem으로 덮어쓰는 것이 훨씬 확실합니다.
-    sessionStorage.setItem('SboolLogged', 'false'); // <-- 이 줄을 추가합니다.
+    sessionStorage.setItem('SboolLogged', 'false');
     sessionStorage.removeItem('SuserName'); // 사용자 이름은 제거 (혹시 모르니 확실히)
 
     // 2. React 상태 업데이트
     SetLoggedBool(false);
     SetUserName('');
+    alert('로그아웃 되었습니다');
     }
 };
 
@@ -75,6 +77,10 @@ const Logout = () => {
             <Route path="/" element={<PostsGrid/>} />
             <Route path="/about" element={<About/>} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/register" element={<Register/>} />
+            <Route path="/newPost" element={<NewPost/>} />
+            <Route path="/post/:id" element={<ViewPost/>} />
+            
         </Routes>
         <>
         </>

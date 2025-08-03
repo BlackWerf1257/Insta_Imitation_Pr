@@ -1,0 +1,44 @@
+.register-page-parent-class {
+    display: flex;
+    flex-direction: column;
+    background-color: #e8f7fa;
+    margin: auto;
+    margin-top: calc(100vh / 10);
+    width: calc(100vw / 3);
+    max-width: 600px;
+    height: calc(100vh / 2);
+    justify-content: center;
+    gap: 60px;
+}
+
+.register-keydata-parent-class {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 60px;
+    gap: 20px;
+}
+.register-profileImg-left-class {
+    display: flex;
+    flex-direction: column;
+}
+.preview-img-class {
+    width: 100px;
+    height: 100px;
+}
+
+.input-class {
+    width: 200px;
+    align-self: center;
+    padding: 8px 10px;
+}
+
+.register-button-class {
+    display: flex;
+    border-radius: 6px;
+    width: calc(100vw / 15);
+    height: 50px;
+    justify-content: center;
+    align-self: center;
+}

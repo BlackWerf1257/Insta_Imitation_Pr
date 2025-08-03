@@ -7,17 +7,16 @@
 
 .navigation-parent-class {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-top: 30px;
-    margin-left: 60px;
     gap: 30px;
 }
 
 .navigation-left-class {
     display: flex; /* 빼먹으면 작동 X */
-    margin-left: 100px;
     margin-top: 20px;
-    width: 100vh;
+    margin-left: 100px;
+    width: 600px;
     gap: 30px;
     /*flex-basis: 30px; /* 아이템의 기본 크기 */
     flex-direction: row; /* 가로 방향으로 정렬 */
@@ -26,17 +25,24 @@
 
 .searchbar-parent-class {
     display: flex;
-    gap: 20px;
-    justify-content: flex-end;
+    margin-top: 10px;
+    /*gap: 20px;*/
 }
 .searchbar-class {
-    margin-top: 10px;
-    height: 20px;
-    width: 300px;
+    height: 40px;
+    width: 400px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-right: 0px;
+    padding: 0 16px;
 }
 .search-button-class {
-    border-radius: 8px;
+    height: 40px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left: 0px;
     margin-right: 40px;
+    padding: 0 16px;
 }
 
 .login-button-parent-class {
@@ -47,7 +53,7 @@
 }
 .login-button-class {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;  
     align-items: center;
     padding: 10px 10px;
     background-color: white;
