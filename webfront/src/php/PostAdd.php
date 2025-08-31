@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: http://127.0.0.1:3000');
+header('Access-Control-Allow-Origin: http://localhost:3000');
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json');
@@ -45,10 +45,6 @@ if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
     $fileTypeExt = explode("/", $_FILES['img']['type']);
     $fileExt = $fileTypeExt[1];
 
-    switch ($fileExt) {
-        case 'jpeg':
-        case 'jpg':
-        case 'png':
             $root = __DIR__ . "/../Image/post/";
             if (!is_dir($root)) {
                 if (!mkdir($root, 0755, true)) {
@@ -71,14 +67,6 @@ if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
                 ]);
                 exit();
             }
-            break;
-        default:
-            echo json_encode([
-                'status' => 'failed',
-                'message' => 'jpeg, jpg, png 파일만 업로드 가능합니다.'
-            ]);
-            exit();
-    }
 }
 
 // DB 삽입 (테이블명과 컬럼명은 실제 사용 중인 것에 맞게 수정하세요)

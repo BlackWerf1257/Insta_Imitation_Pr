@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { Box, Button, Container, Grid, Typography,  } from '@mui/material'
 
+
 function MainPage() {
     const [data, setData] = useState([]);
     const navigate = useNavigate();
@@ -59,13 +60,13 @@ function MainPage() {
                         wordBreak: 'break-word', //텍스트가 벗어날때 자동으로 줄 바꿈
                         overflow: 'hidden',
                     }} onClick={() =>  navigate(`/post/${item.id}`)}>
-                        <Typography variant="h6">{item.title}</Typography>
-                        <Typography variant="body2">{item.content}</Typography>
+                        <Typography variant="subtitle2">{item.title}</Typography>
+                        <Typography variant="body6">{item.content.slice(0, 10)}</Typography>
                 </Box>
                 </Grid>
             ))}
         </Grid>
-        <Button onClick={handleMoreItemBtn}> 더 보기 </Button>
+        { data.length > INITIAL_SHOW_ITEM_COUNT  ? (<Button onClick={handleMoreItemBtn}> 더 보기 </Button>) : (<></>)}
     </Container>
   );
 }
