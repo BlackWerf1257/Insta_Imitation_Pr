@@ -111,7 +111,7 @@ function Register(){
         <Box className = 'register-keydata-parent-class'>
             <Box className='preview-img-class'>
                 <p className=''> <b>프로필 사진</b> </p>
-                {preProfileImg ? (<img src={preProfileImg} alt="미리보기" className='register-preview-img-class'/>) : null}
+                {preProfileImg ? (<img src={preProfileImg} alt="미리보기" className='preview-img-class'/>) : null}
             </Box>
             <input type='file' accept='image/*' name='profileImg' className="input-class" onChange={updateProfileImgEvent}></input>
         </Box>
