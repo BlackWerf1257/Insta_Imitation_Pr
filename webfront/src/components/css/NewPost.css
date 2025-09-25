@@ -52,4 +52,10 @@
     height: 40px;
 }
 
+.newPost-preview-img-class {
+    margin-top: 20px;
+    width: 200px;
+    height: 100px;
+}
+
 /*justify-content : 세로 정렬 align-items: 가로 정렬*/

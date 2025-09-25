@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: http://127.0.0.1:3000');
+header('Access-Control-Allow-Origin: http://localhost:3000');
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json');
@@ -33,7 +33,6 @@ if (!$conn)
 
     //사진 관리용
     ////////////////////////////////////////////////////////////////////////////////////////////
-
     $imagePath = NULL;
     if(isset($_FILES['profileImg']) && $_FILES['profileImg']['error'] === UPLOAD_ERR_OK)
     {
@@ -44,22 +43,6 @@ if (!$conn)
         $fileType = $fileTypeExt[0];
         // 파일 확장자
         $fileExt = $fileTypeExt[1];
-
-            // 확장자 검사
-    switch($fileExt){
-    	case 'jpeg': $extStatus = true; break;
-    	case 'jpg': $extStatus = true; break;
-    	//case 'gif':
-    	case 'png': $extStatus = true; break;
-	
-	default:
-		$response_data['status'] = 'failed';
-        $response_data['message'] = 'jpeg, jpg, png타입의 사진만 업로드 가능합니다';
-        echo json_encode($response_data);
-        mysqli_close($conn);
-        exit();
-		break;
-    }
     }
 
     $root = __DIR__ . "/../Image/profile/";

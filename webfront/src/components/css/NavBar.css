@@ -16,11 +16,14 @@
     display: flex; /* 빼먹으면 작동 X */
     margin-top: 20px;
     margin-left: 100px;
-    width: 600px;
+    width: 1000px;
     gap: 30px;
     /*flex-basis: 30px; /* 아이템의 기본 크기 */
     flex-direction: row; /* 가로 방향으로 정렬 */
      /* justify-content: space-evenly; /* 메인축으로 아이템 정렬하는 방향 */
+}
+.navigation-left-class.hover {
+    transform: translateY(-3px);
 }
 
 .searchbar-parent-class {
@@ -37,6 +40,7 @@
     padding: 0 16px;
 }
 .search-button-class {
+    min-width: 100px;
     height: 40px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -78,6 +82,9 @@
     height: 40px;
     margin-right: 40px;
 }
+.login-button-class:hover {
+    transform: translateY(-3px); /* 살짝 위로 올라가는 효과 */
+}
 
 
 .navigation-button-class {
@@ -94,7 +101,7 @@
     border-radius: 20px;
 }
 .navigation-button-class:hover {
-    transform: translateY(-3px); /* 살짝 위로 올라가는 효과 */
+    transform: translateY(-1px); /* 살짝 위로 올라가는 효과 */
 }
 
 

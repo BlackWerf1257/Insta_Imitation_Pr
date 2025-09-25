@@ -1,7 +1,8 @@
 // 상단바용 공용 UI
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './css/NavBar.css';
+import { Link as RouterLink } from 'react-router-dom';
+import { Link, Box, TextField, Button, Typography } from '@mui/material';
 
 
 function NavBar({isLogged, onLogout}){
@@ -15,12 +16,21 @@ function NavBar({isLogged, onLogout}){
 
     return (
         <>
-        <h1 className="navbar-title-class"> InstaClone </h1>
+        <Typography variant='h1'  className="navbar-title-class" sx={{fontWeight:"bold", mt: 4, mb:3}}> InstaClone </Typography>
         <div className='navigation-parent-class'>
             { isLogged ? <LoggedNavButtonFunc/> : <LogOutedNavButtonFunc/> }
             <div className='searchbar-parent-class'>
-                <input className='searchbar-class' type='text' placeholder='검색할 내용을 입력해주세요' onChange={updateSearchValue}/>
-                <button className='search-button-class' onClick={() => Search(searchValue)}> 검색하기 </button>
+                <TextField className='searchbar-class' type='text' placeholder='검색할 내용을 입력해주세요' onChange={updateSearchValue} sx={{
+                    background: 'white',
+                    borderRadius: 4,
+                    boxShadow: 4,
+                }}/>
+                <Button className='search-button-class' onClick={() => Search(searchValue)} sx={{
+                    color: 'black',
+                    bgcolor: '#3597ffff',
+                    borderRadius: 4, 
+                    boxShadow: 4,
+                }}> 검색하기 </Button>
             </div>
         </div>
             <LoginBtnFunc isLogged={isLogged} onLogout={onLogout}/>
@@ -43,25 +53,37 @@ function Search(searchValue){
 /**/
 function LoggedNavButtonFunc(){
                 return(
-                <div className="navigation-left-class">
-                        <nav>
-                        <Link to="/" className='navigation-button-class'>홈</Link>
-                        <Link to="/search" className='navigation-button-class'>탐색</Link>
-                        <Link to="/alarm" className='navigation-button-class'>알림</Link>
-                        <Link to="/msg" className='navigation-button-class'>메시지</Link>
-                        </nav>
-                </div>
+                <Box className="navigation-left-class" sx={{display: 'flex',  flexDirection: 'row',  }}>
+                    <Link component={RouterLink} to="/" className='navigation-button-class' sx={{
+                        mr: 3,
+                        color: 'black',
+                        borderRadius: 2, 
+                        boxShadow: 3,
+                    }}>홈</Link>
+                    <Link component={RouterLink} to="/search" className='navigation-button-class' sx={{
+                        mr: 3,
+                        color: 'black',
+                        borderRadius: 2, 
+                        boxShadow: 3,}}>탐색</Link>
+                </Box>
                 )
 }
 function LogOutedNavButtonFunc(){
 
             return(
-            <div className="navigation-left-class">
-                    <nav>
-                    <Link to="/" className='navigation-button-class'>홈</Link>
-                    <Link to="/search" className='navigation-button-class'>탐색</Link>
-                    </nav>
-            </div>
+            <Box className="navigation-left-class" sx={{display: 'flex',  flexDirection: 'row',  }}>
+                    <Link component={RouterLink} to="/" className='navigation-button-class' sx={{
+                        mr: 3,
+                        color: 'black',
+                        borderRadius: 4, 
+                        boxShadow: 4,
+                    }}>홈</Link>
+                    <Link component={RouterLink} to="/search" className='navigation-button-class' sx={{
+                        mr: 3,
+                        color: 'black',
+                        borderRadius: 4, 
+                        boxShadow: 4,}}>탐색</Link>
+            </Box>
             )
 }
 
@@ -71,14 +93,34 @@ function LoginBtnFunc({isLogged, onLogout}){
         <div className='login-button-parent-class'>
         {isLogged ? 
         <>
-            <button className='login-button-class' onClick={onLogout}>로그아웃</button>
-            <Link to="/newPost" className='login-button-class'>글 작성하기</Link>
+            <Link component={RouterLink} className='login-button-class' onClick={onLogout} sx={{
+                mr: 3,
+                color: 'black', 
+                borderRadius: 4, 
+                boxShadow: 4,
+            }}>로그아웃</Link>
+            <Link component={RouterLink} to="/newPost" className='login-button-class' sx={{
+                mr: 3,
+                color: 'black', 
+                borderRadius: 4, 
+                boxShadow: 4,
+            }}>글 작성하기</Link>
         </>
          :
         ( 
         <>
-            <Link to="/login" className='login-button-class'>로그인</Link>
-            <Link to='/register' className='login-button-class'>회원가입</Link>
+            <Link component={RouterLink} to="/login" className='login-button-class' sx={{
+                mr: 3,
+                color: 'black', 
+                borderRadius: 4, 
+                boxShadow: 4,
+            }}>로그인</Link>
+            <Link component={RouterLink} to='/register' className='login-button-class' sx={{
+                mr: 3,
+                color: 'black',
+                borderRadius: 4, 
+                boxShadow: 4,
+            }}>회원가입</Link>
             
         </>
         )}

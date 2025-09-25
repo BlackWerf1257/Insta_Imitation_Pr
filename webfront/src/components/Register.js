@@ -1,6 +1,7 @@
 import './css/Register.css';
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom'; 
+import { Box, TextField, Button, Typography, Container } from '@mui/material';
 
 function Register(){
     const navigate = useNavigate();
@@ -52,13 +53,14 @@ function Register(){
 
 
     const registerEvent = async () => {
-            if(idValue !== "" && pwdValue !== "" && userNameValue !== "" && profileImg != null)
+            if(idValue !== "" && pwdValue !== "" && userNameValue !== "")
             {
                 const formData = new FormData();
                 formData.append('id', idValue); // user_id 값
                 formData.append('pwd', pwdValue);  // user_pw 값
                 formData.append('userName', userNameValue);
-                formData.append('profileImg', profileImg);
+                if(profileImg != null || profileImg != '')
+                    formData.append('profileImg', profileImg);
 
 
                 //임시용
@@ -76,8 +78,8 @@ function Register(){
                 const result = await response.json(); //비동기로 JSON에서 변환
                 alert(result.message);
                 
-                    if(result.status == 'succeed')
-                        navigate('/');
+                if(result.status == 'succeed')
+                    navigate('/');
 
                 }
                 catch(error)
@@ -88,34 +90,43 @@ function Register(){
         }
 
     return(
-    <div className='register-page-parent-class'>
+    <Container maxWidth='md' sx={{bgcolor: 'white', mt: 8, mb: 4}}>
+        <Typography variant='h4' align='center' sx={{pt: 4, pb: 3}}>회원가입</Typography>
         {/*ID*/}    
-        <div className = 'keydata-parent-class'>
-            <p className=''> <b>ID:</b> </p>
-            <input className="input-class" onChange={updateIdValue}></input>
-        </div>
+        <Box className = 'keydata-parent-class' sx={{mt: 4, mb: 4}}>
+            <Typography className='' sx={{alignContent:'center'}}> <b>ID:</b> </Typography>
+            <TextField onChange={updateIdValue}></TextField>
+        </Box>
         {/*PW*/}
-        <div className = 'register-keydata-parent-class'>
-            <p className=''> <b>비밀번호:</b> </p>
-            <input className="input-class" type='password' white-space='nowrap' onChange={updatePwdValue}></input>
-        </div>
+        <Box className = 'register-keydata-parent-class' sx={{mt: 4, mb: 4}}>
+            <Typography className='' sx={{alignContent:'center'}}> <b>비밀번호:</b> </Typography>
+            <TextField type='password' white-space='nowrap' onChange={updatePwdValue}></TextField>
+        </Box>
         {/* 닉네임 */}
-        <div className = 'register-keydata-parent-class'>
-            <p className=''> <b>닉네임:</b> </p>
-            <input className="input-class" onChange={updateUserNameValue}></input>
-        </div>
+        <Box className = 'register-keydata-parent-class' sx={{mt: 4, mb: 4}}>
+            <Typography className='' sx={{alignContent:'center'}}> <b>닉네임:</b> </Typography>
+            <TextField onChange={updateUserNameValue}></TextField>
+        </Box>
         {/* 프로필 사진 */}
-        <div className = 'register-keydata-parent-class'>
-            <div className='preview-img-class'>
+        <Box className = 'register-keydata-parent-class'>
+            <Box className='preview-img-class'>
                 <p className=''> <b>프로필 사진</b> </p>
                 {preProfileImg ? (<img src={preProfileImg} alt="미리보기" className='preview-img-class'/>) : null}
-            </div>
+            </Box>
             <input type='file' accept='image/*' name='profileImg' className="input-class" onChange={updateProfileImgEvent}></input>
-        </div>
+        </Box>
 
-        <button className='register-button-class' onClick={registerEvent}> 회원가입 </button>
+        <Button className='register-button-class' onClick={registerEvent} sx={{
+            mt: 10, 
+            justifyContent:'center',
+            color: 'black',
+            bgcolor: '#3597ffff',
+            borderRadius: 4, 
+            boxShadow: 4,
+            mb: 4
+            }}> 회원가입 </Button>
         {/*LoginEvent(idValue, pwdValue)*/}
-    </div>
+    </Container>
     );
 }
 export default Register;
