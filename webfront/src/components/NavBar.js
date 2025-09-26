@@ -2,7 +2,7 @@
 import React from 'react';
 import './css/NavBar.css';
 import { Link as RouterLink } from 'react-router-dom';
-import { Link, Box, TextField, Button, Typography } from '@mui/material';
+import { Link, Box, TextField, Button, Typography, Container, InputAdornment } from '@mui/material';
 
 
 function NavBar({isLogged, onLogout}){
@@ -15,26 +15,34 @@ function NavBar({isLogged, onLogout}){
     };
 
     return (
-        <>
-        <Typography variant='h1'  className="navbar-title-class" sx={{fontWeight:"bold", mt: 4, mb:3}}> InstaClone </Typography>
-        <div className='navigation-parent-class'>
+        <Container sx={{minWidth:"sx"}}>
+                <Typography
+                    className="navbar-title-class"
+                    sx={{
+                        fontWeight: "bold",
+                        mt: 4,
+                        mb: 3,
+                        fontSize: { xs: "2.5rem", sm: "3.5rem", md: "4.5rem" }, // Responsive h1 size
+                        maxWidth: "100%",
+                    }}
+                >
+                    InstaClone
+                </Typography>
+        <Box sx={{minWidth:"sm", maxWidth:"lg", maxheight:'60px', display: 'flex',  flexDirection: 'row'}}> {/* className='navigation-parent-class' */}
             { isLogged ? <LoggedNavButtonFunc/> : <LogOutedNavButtonFunc/> }
-            <div className='searchbar-parent-class'>
-                <TextField className='searchbar-class' type='text' placeholder='검색할 내용을 입력해주세요' onChange={updateSearchValue} sx={{
-                    background: 'white',
-                    borderRadius: 4,
-                    boxShadow: 4,
+            <Box className='search-bar-parent-class' sx={{display:'flex', flexDirection: 'row'}}>
+                <TextField className='searchbar-class' type='text' placeholder='⌕ 검색할 내용을 입력해주세요' onChange={updateSearchValue}
+                InputProps={{
+                    endAdornment:
+                        <InputAdornment disableTypography position="end">
+                            <Button className='search-button-class' onClick={() => Search(searchValue)}> 검색하기 </Button>
+                        </InputAdornment>
                 }}/>
-                <Button className='search-button-class' onClick={() => Search(searchValue)} sx={{
-                    color: 'black',
-                    bgcolor: '#3597ffff',
-                    borderRadius: 4, 
-                    boxShadow: 4,
-                }}> 검색하기 </Button>
-            </div>
-        </div>
+                
+            </Box>
+        </Box>
             <LoginBtnFunc isLogged={isLogged} onLogout={onLogout}/>
-        </>
+        </Container>
       );
 }
 
@@ -53,17 +61,17 @@ function Search(searchValue){
 /**/
 function LoggedNavButtonFunc(){
                 return(
-                <Box className="navigation-left-class" sx={{display: 'flex',  flexDirection: 'row',  }}>
-                    <Link component={RouterLink} to="/" className='navigation-button-class' sx={{
-                        mr: 3,
+                <Box sx={{display: 'flex',  flexDirection: 'row',  mr:'3'}}>
+                    <Link component={RouterLink} to="/" sx={{
+                        m: 3,
                         color: 'black',
                         borderRadius: 2, 
                         boxShadow: 3,
                     }}>홈</Link>
-                    <Link component={RouterLink} to="/search" className='navigation-button-class' sx={{
+                    <Link component={RouterLink} to="/search" sx={{
                         mr: 3,
                         color: 'black',
-                        borderRadius: 2, 
+                        borderRadius: 4, 
                         boxShadow: 3,}}>탐색</Link>
                 </Box>
                 )
@@ -71,18 +79,9 @@ function LoggedNavButtonFunc(){
 function LogOutedNavButtonFunc(){
 
             return(
-            <Box className="navigation-left-class" sx={{display: 'flex',  flexDirection: 'row',  }}>
-                    <Link component={RouterLink} to="/" className='navigation-button-class' sx={{
-                        mr: 3,
-                        color: 'black',
-                        borderRadius: 4, 
-                        boxShadow: 4,
-                    }}>홈</Link>
-                    <Link component={RouterLink} to="/search" className='navigation-button-class' sx={{
-                        mr: 3,
-                        color: 'black',
-                        borderRadius: 4, 
-                        boxShadow: 4,}}>탐색</Link>
+            <Box sx={{display:"flex", maxWidth:"300px",  flexDirection: 'row', m:'30'}}>
+                    <Link component={RouterLink} to="/" className='login-button-class'>홈</Link>
+                    <Link component={RouterLink} to="/search" className='login-button-class'>탐색</Link>
             </Box>
             )
 }

@@ -33,20 +33,14 @@
 }
 .searchbar-class {
     height: 40px;
-    width: 400px;
+    width: 100%;
+    color: black;
     border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-right: 0px;
-    padding: 0 16px;
 }
 .search-button-class {
-    min-width: 100px;
-    height: 40px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-left: 0px;
-    margin-right: 40px;
-    padding: 0 16px;
+    position: absolute;
+    height: 100%;
+    width: '40px';
 }
 
 .login-button-parent-class {
