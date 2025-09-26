@@ -59,7 +59,7 @@ function Register(){
                 formData.append('id', idValue); // user_id 값
                 formData.append('pwd', pwdValue);  // user_pw 값
                 formData.append('userName', userNameValue);
-                if(profileImg != null || profileImg != '')
+                if(profileImg && typeof profileImg === 'object')
                     formData.append('profileImg', profileImg);
 
 
@@ -79,7 +79,7 @@ function Register(){
                 alert(result.message);
                 
                 if(result.status == 'succeed')
-                    navigate('/');
+                    navigate('/instaCllonePr/home');
 
                 }
                 catch(error)
@@ -87,6 +87,7 @@ function Register(){
                     console.log(error);
                 }
             }
+            else alert('값을 전부 입력해주세요')
         }
 
     return(

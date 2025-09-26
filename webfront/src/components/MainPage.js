@@ -59,7 +59,7 @@ function MainPage() {
                         width: '100px',
                         wordBreak: 'break-word', //텍스트가 벗어날때 자동으로 줄 바꿈
                         overflow: 'hidden',
-                    }} onClick={() =>  navigate(`/post/${item.id}`)}>
+                    }} onClick={() =>  navigate(`/instaCllonePr/post/${item.id}`)}>
                         <Typography variant="subtitle2">{item.title}</Typography>
                         <Typography variant="body6">{item.content.slice(0, 10)}</Typography>
                 </Box>

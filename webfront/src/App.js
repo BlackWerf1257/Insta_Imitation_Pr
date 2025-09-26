@@ -75,12 +75,12 @@ const Logout = () => {
       <main className='Main-container-class'>
        
         <Routes>
-            <Route path="/" element={<PostsGrid/>} />
-            <Route path="/about" element={<About/>} />
-            <Route path="/login" element={<Login/>} />
-            <Route path="/register" element={<Register/>} />
-            <Route path="/newPost" element={<NewPost/>} />
-            <Route path="/post/:id" element={<ViewPost/>} />
+            <Route path="/instaCllonePr/home" element={<PostsGrid/>} />
+            <Route path="/instaCllonePr/about" element={<About/>} />
+            <Route path="/instaCllonePr/login" element={<Login/>} />
+            <Route path="/instaCllonePr/register" element={<Register/>} />
+            <Route path="/instaCllonePr/newPost" element={<NewPost/>} />
+            <Route path="/instaCllonePr/post/:id" element={<ViewPost/>} />
             
         </Routes>
         <>

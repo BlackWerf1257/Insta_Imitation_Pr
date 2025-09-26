@@ -1,46 +1,57 @@
 /* NavBar.css */
-.navbar-title-class {
-    text-align: center;
-    width: 100%;
-    font-size: 50px;
-}
-
 .navigation-parent-class {
     display: flex;
-    justify-content: flex-start;
-    margin-top: 30px;
-    gap: 30px;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .navigation-left-class {
     display: flex; /* 빼먹으면 작동 X */
-    margin-top: 20px;
-    margin-left: 100px;
-    width: 1000px;
-    gap: 30px;
+    width: auto;
+    align-items: center;
+    gap:10px;
     /*flex-basis: 30px; /* 아이템의 기본 크기 */
     flex-direction: row; /* 가로 방향으로 정렬 */
-     /* justify-content: space-evenly; /* 메인축으로 아이템 정렬하는 방향 */
+     /* justify-content: space-evenly; /* 메인축으로 아이템 정렬하는 방향 */ 
 }
-.navigation-left-class.hover {
-    transform: translateY(-3px);
+
+.navigation-button-class{
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+    padding: 3px 3px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 15px;
+    color: black;
+    text-decoration: none; /* 밑줄 제거 */
+    min-width: 60px;
+    height: 60%;
+    text-decoration: none;
+}
+.navigation-button-class:hover {
+    transform: translateY(-8px);
 }
 
 .searchbar-parent-class {
-    display: flex;
+    
+    width: 50%;
+    min-width: 60px;
     margin-top: 10px;
     /*gap: 20px;*/
 }
 .searchbar-class {
-    height: 40px;
     width: 100%;
+    background-color: white;
     color: black;
     border-top-left-radius: 10px;
 }
 .search-button-class {
-    position: absolute;
-    height: 100%;
-    width: '40px';
+    font-size: 12px;
+    background-color: rgba(68, 153, 231, 0.993);    
+    color: black;
 }
 
 .login-button-parent-class {
@@ -81,22 +92,7 @@
 }
 
 
-.navigation-button-class {
-    display: inline-block; /* 버튼처럼 너비/높이/패딩을 적용하기 위해 */
-    min-width: 40px;
-    padding: 10px 10px; /* 내부 여백 (위아래 10px, 좌우 20px) */
-    text-align: center;
-    text-decoration: none;
-    background-color: rgb(255, 251, 251);
-    min-width: 60px;
-    transition: transform 0.2s ease; /* 호버 애니메이션 */
-    margin-right: 10px;
-    
-    border-radius: 20px;
-}
-.navigation-button-class:hover {
-    transform: translateY(-1px); /* 살짝 위로 올라가는 효과 */
-}
+
 
 
 .about-class {

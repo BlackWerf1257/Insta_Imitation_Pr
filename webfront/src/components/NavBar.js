@@ -16,26 +16,33 @@ function NavBar({isLogged, onLogout}){
 
     return (
         <Container sx={{minWidth:"sx"}}>
-                <Typography
-                    className="navbar-title-class"
+            <Box sx={{display:'flex', justifyContent: 'center', width:'100%'}}>
+                <Link
+                    component={RouterLink} to='/home' 
                     sx={{
-                        fontWeight: "bold",
                         mt: 4,
                         mb: 3,
-                        fontSize: { xs: "2.5rem", sm: "3.5rem", md: "4.5rem" }, // Responsive h1 size
-                        maxWidth: "100%",
+                        fontSize: { xs: "2rem", sm: "3rem", md: "4rem" }, // Responsive h1 size
+                        
+                        color: 'black',
+                        textDecoration: 'none',
                     }}
                 >
                     InstaClone
-                </Typography>
-        <Box sx={{minWidth:"sm", maxWidth:"lg", maxheight:'60px', display: 'flex',  flexDirection: 'row'}}> {/* className='navigation-parent-class' */}
-            { isLogged ? <LoggedNavButtonFunc/> : <LogOutedNavButtonFunc/> }
-            <Box className='search-bar-parent-class' sx={{display:'flex', flexDirection: 'row'}}>
+                </Link>
+            </Box>
+        <Box className='navigation-parent-class'> {/*  sx={{minWidth:"sm", maxWidth:"lg", maxheight:'60px', display: 'flex',  flexDirection: 'row'}} */}
+            {/* isLogged ? <LoggedNavButtonFunc/> : <LogOutedNavButtonFunc/> */}
+            <Box className="navigation-left-class">
+                    <Link component={RouterLink} to='/instaCllonePr/home' className='navigation-button-class'>홈</Link>
+                    <Link component={RouterLink} to="/instaCllonePr/search" className='navigation-button-class'>탐색</Link>
+                </Box>
+            <Box className='searchbar-parent-class'>
                 <TextField className='searchbar-class' type='text' placeholder='⌕ 검색할 내용을 입력해주세요' onChange={updateSearchValue}
                 InputProps={{
                     endAdornment:
-                        <InputAdornment disableTypography position="end">
-                            <Button className='search-button-class' onClick={() => Search(searchValue)}> 검색하기 </Button>
+                        <InputAdornment disableTypography position="end" className='search-button-class'>
+                            <Button className='search-button-class' onClick={() => Search(searchValue)}> 검색 </Button>
                         </InputAdornment>
                 }}/>
                 
@@ -58,33 +65,7 @@ function Search(searchValue){
     }
 }
 
-/**/
-function LoggedNavButtonFunc(){
-                return(
-                <Box sx={{display: 'flex',  flexDirection: 'row',  mr:'3'}}>
-                    <Link component={RouterLink} to="/" sx={{
-                        m: 3,
-                        color: 'black',
-                        borderRadius: 2, 
-                        boxShadow: 3,
-                    }}>홈</Link>
-                    <Link component={RouterLink} to="/search" sx={{
-                        mr: 3,
-                        color: 'black',
-                        borderRadius: 4, 
-                        boxShadow: 3,}}>탐색</Link>
-                </Box>
-                )
-}
-function LogOutedNavButtonFunc(){
 
-            return(
-            <Box sx={{display:"flex", maxWidth:"300px",  flexDirection: 'row', m:'30'}}>
-                    <Link component={RouterLink} to="/" className='login-button-class'>홈</Link>
-                    <Link component={RouterLink} to="/search" className='login-button-class'>탐색</Link>
-            </Box>
-            )
-}
 
 //중괄호로 감싸야 함(중괄호 미 사용시 빈 경우가 아닌경우 true로 처리해버리기 때문)
 function LoginBtnFunc({isLogged, onLogout}){
@@ -98,7 +79,7 @@ function LoginBtnFunc({isLogged, onLogout}){
                 borderRadius: 4, 
                 boxShadow: 4,
             }}>로그아웃</Link>
-            <Link component={RouterLink} to="/newPost" className='login-button-class' sx={{
+            <Link component={RouterLink} to="/instaCllonePr/newPost" className='login-button-class' sx={{
                 mr: 3,
                 color: 'black', 
                 borderRadius: 4, 
@@ -108,13 +89,13 @@ function LoginBtnFunc({isLogged, onLogout}){
          :
         ( 
         <>
-            <Link component={RouterLink} to="/login" className='login-button-class' sx={{
+            <Link component={RouterLink} to="/instaCllonePr/login" className='login-button-class' sx={{
                 mr: 3,
                 color: 'black', 
                 borderRadius: 4, 
                 boxShadow: 4,
             }}>로그인</Link>
-            <Link component={RouterLink} to='/register' className='login-button-class' sx={{
+            <Link component={RouterLink} to='/instaCllonePr/register' className='login-button-class' sx={{
                 mr: 3,
                 color: 'black',
                 borderRadius: 4, 

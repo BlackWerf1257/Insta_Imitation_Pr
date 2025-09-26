@@ -24,7 +24,7 @@ function Login() {
         })
         .then((result) => {
           if (result && result.status === 'succeed') { // 조건 수정
-            navigate('/', { state: { isLogged: true, userId: idValue } });
+            navigate('/instaCllonePr/home', { state: { isLogged: true, userId: idValue } });
           } else if (result) {
             alert('ID나 비밀번호가 일치하지 않습니다.');
           }
