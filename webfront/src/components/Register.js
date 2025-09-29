@@ -117,15 +117,7 @@ function Register(){
             <input type='file' accept='image/*' name='profileImg' className="input-class" onChange={updateProfileImgEvent}></input>
         </Box>
 
-        <Button className='register-button-class' onClick={registerEvent} sx={{
-            mt: 10, 
-            justifyContent:'center',
-            color: 'black',
-            bgcolor: '#3597ffff',
-            borderRadius: 4, 
-            boxShadow: 4,
-            mb: 4
-            }}> 회원가입 </Button>
+        <Button className='register-button-class' onClick={registerEvent}> 회원가입 </Button>
         {/*LoginEvent(idValue, pwdValue)*/}
     </Container>
     );

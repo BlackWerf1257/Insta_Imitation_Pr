@@ -18,7 +18,7 @@ function NavBar({isLogged, onLogout}){
         <Container sx={{minWidth:"sx"}}>
             <Box sx={{display:'flex', justifyContent: 'center', width:'100%'}}>
                 <Link
-                    component={RouterLink} to='/home' 
+                    component={RouterLink} to='/instaCllonePr/home' 
                     sx={{
                         mt: 4,
                         mb: 3,
@@ -42,7 +42,7 @@ function NavBar({isLogged, onLogout}){
                 InputProps={{
                     endAdornment:
                         <InputAdornment disableTypography position="end" className='search-button-class'>
-                            <Button className='search-button-class' onClick={() => Search(searchValue)}> 검색 </Button>
+                            <Button className='search-button-class' size='medium' onClick={() => Search(searchValue)}> 검색 </Button>
                         </InputAdornment>
                 }}/>
                 
@@ -73,12 +73,7 @@ function LoginBtnFunc({isLogged, onLogout}){
         <div className='login-button-parent-class'>
         {isLogged ? 
         <>
-            <Link component={RouterLink} className='login-button-class' onClick={onLogout} sx={{
-                mr: 3,
-                color: 'black', 
-                borderRadius: 4, 
-                boxShadow: 4,
-            }}>로그아웃</Link>
+            <Link component={RouterLink} className='login-button-class' onClick={onLogout}>로그아웃</Link>
             <Link component={RouterLink} to="/instaCllonePr/newPost" className='login-button-class' sx={{
                 mr: 3,
                 color: 'black', 

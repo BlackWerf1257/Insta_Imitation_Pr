@@ -37,8 +37,9 @@
 .register-button-class {
     display: flex;
     border-radius: 6px;
-    width: calc(100vw / 15);
+    background-color: rgba(68, 153, 231, 0.993);
+    color: black;
     height: 50px;
-    justify-content: center;
+    min-width: 100px;
     align-self: center;
 }
