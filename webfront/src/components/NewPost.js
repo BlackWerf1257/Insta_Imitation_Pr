@@ -78,7 +78,7 @@ function NewPost() {
               if(result.status == 'succeed')
               {
                   alert('글이 등록되었습니다');
-                  navigate('/');
+                  navigate('/instaCllonePr/home');
               }
               else
               {

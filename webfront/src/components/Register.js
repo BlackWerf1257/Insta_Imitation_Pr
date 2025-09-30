@@ -59,7 +59,7 @@ function Register(){
                 formData.append('id', idValue); // user_id 값
                 formData.append('pwd', pwdValue);  // user_pw 값
                 formData.append('userName', userNameValue);
-                if(profileImg != null || profileImg != '')
+                if(profileImg && typeof profileImg === 'object')
                     formData.append('profileImg', profileImg);
 
 
@@ -79,7 +79,7 @@ function Register(){
                 alert(result.message);
                 
                 if(result.status == 'succeed')
-                    navigate('/');
+                    navigate('/instaCllonePr/home');
 
                 }
                 catch(error)
@@ -87,10 +87,11 @@ function Register(){
                     console.log(error);
                 }
             }
+            else alert('값을 전부 입력해주세요')
         }
 
     return(
-    <Container maxWidth='md' sx={{bgcolor: 'white', mt: 8, mb: 4}}>
+    <Container maxWidth='md' sx={{bgcolor: 'white', mt: 8, mb: 10, height: '700px'}}>
         <Typography variant='h4' align='center' sx={{pt: 4, pb: 3}}>회원가입</Typography>
         {/*ID*/}    
         <Box className = 'keydata-parent-class' sx={{mt: 4, mb: 4}}>
@@ -109,23 +110,17 @@ function Register(){
         </Box>
         {/* 프로필 사진 */}
         <Box className = 'register-keydata-parent-class'>
-            <Box className='preview-img-class'>
-                <p className=''> <b>프로필 사진</b> </p>
-                {preProfileImg ? (<img src={preProfileImg} alt="미리보기" className='preview-img-class'/>) : null}
+            <Box className='register-profileImg-left-class'>
+                <p className='register-text-class'> <b>프로필 사진</b> </p>
+                {preProfileImg ? (<img src={preProfileImg} onError={ e => { e.target.src = 'https://myreactstudy1.dothome.co.kr/instaCllonePr/default_avatar.png';}} className='preview-img-class'/>) : null}
             </Box>
             <input type='file' accept='image/*' name='profileImg' className="input-class" onChange={updateProfileImgEvent}></input>
         </Box>
 
-        <Button className='register-button-class' onClick={registerEvent} sx={{
-            mt: 10, 
-            justifyContent:'center',
-            color: 'black',
-            bgcolor: '#3597ffff',
-            borderRadius: 4, 
-            boxShadow: 4,
-            mb: 4
-            }}> 회원가입 </Button>
-        {/*LoginEvent(idValue, pwdValue)*/}
+        {/* 회원가입 버튼 */}
+        <Box className='register-button-box-class'>
+            <Button className='register-button-class' onClick={registerEvent}> 회원가입 </Button>
+        </Box>
     </Container>
     );
 }

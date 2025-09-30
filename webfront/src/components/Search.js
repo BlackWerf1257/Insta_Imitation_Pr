@@ -16,7 +16,7 @@ function MainPage() {
     };
 
     useEffect(() => {
-        fetch('https://myreactstudy1.dothome.co.kr/GetPrePost.php')  // 실제 주소로 변경
+        fetch('https://myreactstudy1.dothome.co.kr/Search.php')  // 실제 주소로 변경
             .then(res => res.json())
             .then(json => setData(json))
             .catch(err => console.error("데이터 불러오기 실패", err));

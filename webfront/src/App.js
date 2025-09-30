@@ -11,6 +11,8 @@ import About from './About';
 import Register from './components/Register';
 import NewPost from './components/NewPost';
 import ViewPost from './components/ViewPost';
+import Search from './components/Search';
+import { Container } from '@mui/material';
 //index에서 BrowserRouter로 감쌈(Router 사용 금지)
 
 //
@@ -68,18 +70,20 @@ const Logout = () => {
 
   return (
 
-    <div className='App-container'>
+    <Container className='App-container'>
           <NavBar isLogged={isLogged} onLogout={Logout}></NavBar>
 
       <main className='Main-container-class'>
        
         <Routes>
-            <Route path="/" element={<PostsGrid/>} />
-            <Route path="/about" element={<About/>} />
-            <Route path="/login" element={<Login/>} />
-            <Route path="/register" element={<Register/>} />
-            <Route path="/newPost" element={<NewPost/>} />
-            <Route path="/post/:id" element={<ViewPost/>} />
+            <Route path="/instaCllonePr/" element={<PostsGrid/>} />
+            <Route path="/instaCllonePr/home" element={<PostsGrid/>} />
+            <Route path="/instaCllonePr/about" element={<About/>} />
+            <Route path="/instaCllonePr/login" element={<Login/>} />
+            <Route path="/instaCllonePr/register" element={<Register/>} />
+            <Route path="/instaCllonePr/newPost" element={<NewPost/>} />
+            <Route path="/instaCllonePr/post/:id" element={<ViewPost/>} />
+            <Route path="/instaCllonePr/search/:data" element={<Search/>} />
             
         </Routes>
         <>
@@ -88,7 +92,7 @@ const Logout = () => {
 
       <Info></Info>
       <Footer></Footer>
-    </div>
+    </Container>
   );
 }
 

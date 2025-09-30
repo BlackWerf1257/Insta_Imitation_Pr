@@ -1,6 +1,7 @@
 .InfoBar-Class {
     min-height: 20px;
     flex-shrink: 0;
+    width: 100%;
 }
 
 .item-button-class {
