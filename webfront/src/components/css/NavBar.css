@@ -28,9 +28,11 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 15px;
-    text-decoration: none; /* 밑줄 제거 */
+    text-decoration: none !important; /* 밑줄 제거 */
     width: auto;
     height: 50%;
+
+    color: black !important;
 }
 .navigation-button-class:hover {
     transform: translateY(-8px);
@@ -44,21 +46,23 @@
     /*gap: 20px;*/
 }
 .searchbar-class {
+    display: flex;
     width: 100%;
     background-color: white;
-    color: black;
     border-top-left-radius: 10px;
 }
 .search-button-class {
-    font-size: 12px;
-    background-color: rgba(68, 153, 231, 0.993);
-    height: 100%;
-    color: black;
-    text-decoration: none;
-
+    display: flex;
     justify-content: center;  
     align-items: center;
     text-align: center;
+    font-size: 12px;
+    padding: 8px 8px;
+    background-color: rgba(68, 153, 231, 0.993);
+    height: 100%;
+    color: black !important;
+    text-decoration: none;
+    border-radius: 5px;
 }
 
 .login-button-parent-class {
@@ -66,6 +70,7 @@
     height: 50px;
     margin-top: 20px;
     justify-content: flex-end;
+    gap: 20px;
 }
 .login-button-class {
     display: flex;
@@ -81,7 +86,7 @@
     min-height: 20px;
     min-width: 60px;
     margin-right: 40px;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 .logout-button-class {
     display: flex;

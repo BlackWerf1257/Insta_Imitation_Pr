@@ -43,7 +43,7 @@ if (!$conn)
         $fileType = $fileTypeExt[0];
         // 파일 확장자
         $fileExt = $fileTypeExt[1];
-    }
+
 
     $root = __DIR__ . "/../Image/profile/";
     if(!is_dir($root))
@@ -64,11 +64,13 @@ if (!$conn)
         $imagePath = $uploadPath;
     }
     else{
+        $imagePath = '';
         $response_data['status'] = 'failed';
         $response_data['message'] = '파일 업로드 실패';
         echo json_encode($response_data);
         mysqli_close($conn);
         exit();
+        }
     }
 
     

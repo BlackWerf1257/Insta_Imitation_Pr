@@ -66,7 +66,7 @@ const onDeleteClick = () => {
           pl: 3,
           pt: 3
         }}>{post.content}</Typography>
-        {[post.image_url ? ( <Box component="img"  src={`${post.image_url}`} alt="첨부 이미지" sx={{
+        {[post.image_url ? ( <Box key="post-image" component="img"  src={`${post.image_url}`} alt="첨부 이미지" sx={{
           justifyContent:"center",
           width: '200px',
           height: '200px',

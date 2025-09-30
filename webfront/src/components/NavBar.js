@@ -2,17 +2,39 @@
 import React from 'react';
 import './css/NavBar.css';
 import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 import { Link, Box, TextField, Button, Typography, Container, InputAdornment } from '@mui/material';
 
 
 function NavBar({isLogged, onLogout}){
     const [searchValue, SetSearchValue] = React.useState(''); /* 검색창 데이터 */
+    const navigate = useNavigate();
 
     /* 검색값 업데이트용 */
     const updateSearchValue = event => {
         SetSearchValue(event.target.value);
         //console.log(event.target.value);
     };
+
+    function RandPost(){
+    fetch('https://myreactstudy1.dothome.co.kr/RandPost.php')  // 실제 주소로 변경
+    .then(res => res.json())
+    .then(json => navigate(`/instaCllonePr/post/${json.id}`))
+    .catch(err => console.error("데이터 불러오기 실패", err));
+    }
+    function Search(searchValue){
+    //=== 사용해야 빈 문자열인지 비교함
+    if(searchValue === "")
+    {
+            alert("검색할 내용을 입력해주세요")
+    }
+    else
+    {
+            console.log("검색 실행")
+            //navigate(`/instaCllonePr/search/${searchValue}`);
+    }
+}
+
 
     return (
         <Container sx={{minWidth:"sx"}}>
@@ -35,7 +57,7 @@ function NavBar({isLogged, onLogout}){
             {/* isLogged ? <LoggedNavButtonFunc/> : <LogOutedNavButtonFunc/> */}
             <Box className="navigation-left-class">
                     <Link component={RouterLink} to='/instaCllonePr/home' className='navigation-button-class'>홈</Link>
-                    <Link component={RouterLink} to="/instaCllonePr/search" className='navigation-button-class'>탐색</Link>
+                    <Link component={RouterLink} onClick={RandPost} className='navigation-button-class'>탐색</Link>
                 </Box>
             <Box className='searchbar-parent-class'>
                 <TextField className='searchbar-class' type='text' placeholder='⌕ 검색할 내용을 입력해주세요' onChange={updateSearchValue}
@@ -53,18 +75,6 @@ function NavBar({isLogged, onLogout}){
       );
 }
 
-function Search(searchValue){
-    //=== 사용해야 빈 문자열인지 비교함
-    if(searchValue === "")
-    {
-            alert("검색할 내용을 입력해주세요")
-    }
-    else
-    {
-            console.log("검색 실행")
-    }
-}
-
 
 
 //중괄호로 감싸야 함(중괄호 미 사용시 빈 경우가 아닌경우 true로 처리해버리기 때문)
@@ -74,12 +84,7 @@ function LoginBtnFunc({isLogged, onLogout}){
         {isLogged ? 
         <>
             <Link component={RouterLink} className='login-button-class' onClick={onLogout}>로그아웃</Link>
-            <Link component={RouterLink} to="/instaCllonePr/newPost" className='login-button-class' sx={{
-                mr: 3,
-                color: 'black', 
-                borderRadius: 4, 
-                boxShadow: 4,
-            }}>글 작성하기</Link>
+            <Link component={RouterLink} to="/instaCllonePr/newPost" className='login-button-class'>글 작성하기</Link>
         </>
          :
         ( 
