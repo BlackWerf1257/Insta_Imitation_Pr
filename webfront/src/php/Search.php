@@ -17,19 +17,18 @@ if ($conn->connect_error) {
 }
 
 $input = isset($_GET['input']) ? $_GET['input'] : '';
+$searchTerm = '%' . $input . '%';
 
 
-$stmt = $conn->prepare("SELECT id, title, userId, content, image_path, created_at FROM post WHERE title LIKE '%$input`%'");
+$stmt = $conn->prepare("SELECT id, title, userId, content, image_path, created_at FROM post WHERE title LIKE '$searchTerm'");
 $stmt->execute();
 $result = $stmt->get_result();
-$post = $result->fetch_assoc();
+$post = [];
+while ($row = $result->fetch_assoc()) {
+    $post[] = $row;
+}
 
 if ($post) {
-    if ($post['image_path']) 
-        $post['image_url'] = 'https://myreactstudy1.dothome.co.kr/GetImage.php?image=' . urlencode($post['image_path']);
-    else
-        $post['image_url'] = null;
-
     echo json_encode($post);
 } else {
     echo json_encode(["status" => "failed", "message" => "게시글을 찾을 수 없습니다."]);

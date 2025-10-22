@@ -1,13 +1,12 @@
 // 상단바용 공용 UI
-import React from 'react';
+import { React, useState } from 'react';
 import './css/NavBar.css';
-import { Link as RouterLink } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate, Link as RouterLink } from 'react-router-dom'; 
 import { Link, Box, TextField, Button, Typography, Container, InputAdornment } from '@mui/material';
 
 
 function NavBar({isLogged, onLogout}){
-    const [searchValue, SetSearchValue] = React.useState(''); /* 검색창 데이터 */
+    const [searchValue, SetSearchValue] = useState(''); /* 검색창 데이터 */
     const navigate = useNavigate();
 
     /* 검색값 업데이트용 */
@@ -25,14 +24,9 @@ function NavBar({isLogged, onLogout}){
     function Search(searchValue){
     //=== 사용해야 빈 문자열인지 비교함
     if(searchValue === "")
-    {
             alert("검색할 내용을 입력해주세요")
-    }
     else
-    {
-            console.log("검색 실행")
-            //navigate(`/instaCllonePr/search/${searchValue}`);
-    }
+            navigate(`/instaCllonePr/search/${searchValue}`) ;
 }
 
 

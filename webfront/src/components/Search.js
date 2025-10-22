@@ -1,73 +1,120 @@
 import { React, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; 
-import { Box, Button, Container, Grid, Typography,  } from '@mui/material'
+import { useNavigate, useParams } from 'react-router-dom'; 
+import { Box, Button, Container, Grid, Typography, CircularProgress } from '@mui/material';
 
-
-function MainPage() {
-    const [data, setData] = useState([]);
+function Search() {
+    // useParams에서 'data' 값을 추출하여 searchValueInput에 저장
+    const { data: searchValueInput } = useParams(); 
     const navigate = useNavigate();
     
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const INITIAL_SHOW_ITEM_COUNT = 20;
-    let prevShowItemCnt = 20;
-    const ITEM_ADD_TO_SHOW = 20;
+    const INITIAL_SHOW_ITEM_COUNT = 10;
+    const ITEM_ADD_TO_SHOW = 10;
     const [itemShowCnt, UpdateItemShowCnt] = useState(INITIAL_SHOW_ITEM_COUNT); 
-    const handleMoreItemBtn = () => { UpdateItemShowCnt(prevShowItemCnt => Math.min(prevShowItemCnt + ITEM_ADD_TO_SHOW, data.length));
+    
+    const handleMoreItemBtn = () => { 
+        UpdateItemShowCnt(prevShowItemCnt => Math.min(prevShowItemCnt + ITEM_ADD_TO_SHOW, data.length));
     };
 
     useEffect(() => {
-        fetch('https://myreactstudy1.dothome.co.kr/Search.php')  // 실제 주소로 변경
+        if (!searchValueInput) {
+            setLoading(false);
+            return; 
+        }
+
+        setLoading(true);
+        setError(null);
+        
+        fetch(`https://myreactstudy1.dothome.co.kr/Search.php?input=${searchValueInput}`) 
             .then(res => res.json())
-            .then(json => setData(json))
-            .catch(err => console.error("데이터 불러오기 실패", err));
-    }, []);
+            .then(json => {
+                //받은 데이터가 배열인지 확인
+                let processedData = [];
+                
+                if (Array.isArray(json)) {
+                    // 1. 데이터가 배열인 경우 (단일 검색 결과)
+                    processedData = json;
+                } else if (json && json.id) {
+                    // 2. 데이터가 단일 객체인 경우 (검색 결과 한 개)
+                    processedData = [json];
+                }
+                
+                setData(processedData);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error("데이터 불러오기 실패", err);
+                setError(err.message);
+                setData([]); // 실패 시 빈 배열로 초기화
+                setLoading(false);
+            });
+            
+    }, [searchValueInput]); 
 
+    // --- 렌더링 시작 ---
 
-//xs: 모바일, sm: 태블릿, md,lg,xl: 데스크톱
-//각 줄은 12 / size의 값으로 표시됨
-//Max 20개
-  return (
-    <Container maxWidth="md">
-    <Grid container rowSpacing={1}
-        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-        sx={{
-                justifyContent: "flex-start",
-                alignItems: "center", // 아이템 수직 중앙 정렬
-                padding: "20px",
-                display: "flex",     // 디폴트값
-                flexWrap: "wrap",    // 줄바꿈 허용
-        }}>
+    if (loading) return <CircularProgress sx={{ display: 'block', margin: '20px auto' }} />;
 
-            {data.slice(0, itemShowCnt).map((item) => (
-                <Grid
-                    item
-                    key={item.id}
-                    xs={6}
-                    sm={4}
-                    md={3} 
-                >
-                <Box sx={{
-                        border: '1px solid #ddd', // 각 아이템의 시각적 구분
-                        borderRadius: '4px',
-                        padding: '20px',
-                        textAlign: 'center',
-                        height: '100px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center', 
-                        width: '100px',
-                        wordBreak: 'break-word', //텍스트가 벗어날때 자동으로 줄 바꿈
-                        overflow: 'hidden',
-                    }} onClick={() =>  navigate(`/instaCllonePr/post/${item.id}`)}>
-                        <Typography variant="subtitle2">{item.title}</Typography>
-                        <Typography variant="body6">{item.content.slice(0, 10)}</Typography>
+    return (
+        <Container maxWidth="md">
+            {/* 1. 검색어 출력 */}
+            <Typography variant="h5" gutterBottom sx={{ mt: 3, mb: 3 }}>
+                검색 결과: 
+                <Box component="span" fontWeight="bold" color="primary.main" sx={{ ml: 1 }}>
+                    {searchValueInput || "전체"}
                 </Box>
-                </Grid>
-            ))}
-        </Grid>
-        { data.length > INITIAL_SHOW_ITEM_COUNT  ? (<Button onClick={handleMoreItemBtn}> 더 보기 </Button>) : (<></>)}
-    </Container>
-  );
+            </Typography>
+
+
+            {/* 검색 결과 목록 */}
+            <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                
+                {data.slice(0, itemShowCnt).map((item) => (
+                    <Grid 
+                        item key={item.id || item.title} size={12}>
+                        <Box 
+                            
+                            sx={{
+                                border: '1px solid #ddd',
+                                borderRadius: '4px',
+                                p: 2,
+                                height: '150px',
+                                textAlign: 'left',
+                                cursor: 'pointer',
+                                '&:hover': { backgroundColor: '#f5f5f5' }
+                            }} 
+                            onClick={() => navigate(`/instaCllonePr/post/${item.id}`)}
+                        >
+                            <Typography variant="subtitle1" fontWeight="bold" noWrap>{item.title}</Typography>
+                            <Typography variant="body2" color="text.secondary" noWrap sx={{mt: 2}}>{item.userId}</Typography>
+                            <Typography variant="body2" sx={{ mt: 4, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
+                                {item.content}
+                            </Typography>
+                        </Box>
+                    </Grid>
+                ))}
+
+                {data.length === 0 && !loading && (
+                    <Grid item xs={12}>
+                        <Typography color="text.secondary">검색 결과가 없습니다.</Typography>
+                    </Grid>
+                )}
+            </Grid>
+            
+            {/* 더 보기 버튼 */}
+            {data.length > itemShowCnt ? (
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4, mb: 5 }}>
+                    <Button onClick={handleMoreItemBtn} variant="contained"> 
+                        더 보기 ({itemShowCnt} / {data.length})
+                    </Button>
+                </Box>
+            ) : (<></>)
+        }
+        </Container>
+    );
 }
-export default MainPage;
+
+export default Search;
