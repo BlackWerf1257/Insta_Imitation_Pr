@@ -32,7 +32,7 @@ function NavBar({isLogged, onLogout}){
 
     return (
         <Container sx={{minWidth:"sx"}}>
-            <Box sx={{display:'flex', justifyContent: 'center', width:'100%'}}>
+            <Box sx={{display:'flex', justifyContent: 'center', width:'100%'}} onClick={() => SetSearchValue('')}>
                 <Link
                     component={RouterLink} to='/instaCllonePr/home' 
                     sx={{
@@ -50,11 +50,11 @@ function NavBar({isLogged, onLogout}){
         <Box className='navigation-parent-class'> {/*  sx={{minWidth:"sm", maxWidth:"lg", maxheight:'60px', display: 'flex',  flexDirection: 'row'}} */}
             {/* isLogged ? <LoggedNavButtonFunc/> : <LogOutedNavButtonFunc/> */}
             <Box className="navigation-left-class">
-                    <Link component={RouterLink} to='/instaCllonePr/home' className='navigation-button-class'>홈</Link>
-                    <Link component={RouterLink} onClick={RandPost} className='navigation-button-class'>탐색</Link>
+                    <Link component={RouterLink} to='/instaCllonePr/home' className='navigation-button-class'  onClick={() => SetSearchValue('')}>홈</Link>
+                    <Link component={RouterLink} onClick={RandPost} className='navigation-button-class' >탐색</Link>
                 </Box>
             <Box className='searchbar-parent-class'>
-                <TextField className='searchbar-class' type='text' placeholder='⌕ 검색할 내용을 입력해주세요' onChange={updateSearchValue}
+                <TextField className='searchbar-class' type='text' placeholder='⌕ 검색할 내용을 입력해주세요' value={searchValue} onChange={updateSearchValue}
                 InputProps={{
                     endAdornment:
                         <InputAdornment disableTypography position="end" className='search-button-class'>
