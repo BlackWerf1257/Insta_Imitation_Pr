@@ -66,7 +66,7 @@ function MainPage() {
                 </Grid>
             ))}
         </Grid>
-        { data.length > INITIAL_SHOW_ITEM_COUNT  ? (<Button onClick={handleMoreItemBtn}> 더 보기 </Button>) : (<></>)}
+        { data.length > INITIAL_SHOW_ITEM_COUNT  ? (<Button onClick={handleMoreItemBtn} variant='contained'> 더 보기 ({itemShowCnt} / {data.length}) </Button>) : (<></>)}
     </Container>
   );
 }

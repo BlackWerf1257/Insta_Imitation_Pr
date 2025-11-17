@@ -1,13 +1,12 @@
 // 상단바용 공용 UI
-import React from 'react';
+import { React, useState } from 'react';
 import './css/NavBar.css';
-import { Link as RouterLink } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate, Link as RouterLink } from 'react-router-dom'; 
 import { Link, Box, TextField, Button, Typography, Container, InputAdornment } from '@mui/material';
 
 
 function NavBar({isLogged, onLogout}){
-    const [searchValue, SetSearchValue] = React.useState(''); /* 검색창 데이터 */
+    const [searchValue, SetSearchValue] = useState(''); /* 검색창 데이터 */
     const navigate = useNavigate();
 
     /* 검색값 업데이트용 */
@@ -25,20 +24,15 @@ function NavBar({isLogged, onLogout}){
     function Search(searchValue){
     //=== 사용해야 빈 문자열인지 비교함
     if(searchValue === "")
-    {
             alert("검색할 내용을 입력해주세요")
-    }
     else
-    {
-            console.log("검색 실행")
-            //navigate(`/instaCllonePr/search/${searchValue}`);
-    }
+            navigate(`/instaCllonePr/search/${searchValue}`) ;
 }
 
 
     return (
         <Container sx={{minWidth:"sx"}}>
-            <Box sx={{display:'flex', justifyContent: 'center', width:'100%'}}>
+            <Box sx={{display:'flex', justifyContent: 'center', width:'100%'}} onClick={() => SetSearchValue('')}>
                 <Link
                     component={RouterLink} to='/instaCllonePr/home' 
                     sx={{
@@ -56,11 +50,11 @@ function NavBar({isLogged, onLogout}){
         <Box className='navigation-parent-class'> {/*  sx={{minWidth:"sm", maxWidth:"lg", maxheight:'60px', display: 'flex',  flexDirection: 'row'}} */}
             {/* isLogged ? <LoggedNavButtonFunc/> : <LogOutedNavButtonFunc/> */}
             <Box className="navigation-left-class">
-                    <Link component={RouterLink} to='/instaCllonePr/home' className='navigation-button-class'>홈</Link>
-                    <Link component={RouterLink} onClick={RandPost} className='navigation-button-class'>탐색</Link>
+                    <Link component={RouterLink} to='/instaCllonePr/home' className='navigation-button-class'  onClick={() => SetSearchValue('')}>홈</Link>
+                    <Link component={RouterLink} onClick={RandPost} className='navigation-button-class' >탐색</Link>
                 </Box>
             <Box className='searchbar-parent-class'>
-                <TextField className='searchbar-class' type='text' placeholder='⌕ 검색할 내용을 입력해주세요' onChange={updateSearchValue}
+                <TextField className='searchbar-class' type='text' placeholder='⌕ 검색할 내용을 입력해주세요' value={searchValue} onChange={updateSearchValue}
                 InputProps={{
                     endAdornment:
                         <InputAdornment disableTypography position="end" className='search-button-class'>

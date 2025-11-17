@@ -55,7 +55,7 @@ const onDeleteClick = () => {
 
   return (
     <Container maxWidth="md" sx={{ mt: 4,  borderRadius: 2, boxShadow: 3, mb: 5}} className='upper-parent-class'>
-      <Typography variant="h5" display='flex' sx={{justifyContent:'center', align:'center'}}>{post.title}</Typography>
+      <Typography variant="h5" display='flex' sx={{justifyContent:'center', align:'center', pt: 3}}>{post.title}</Typography>
       <Divider sx={{ my: 4 }} />
       <Box sx={{ display: 'flex',  flexDirection: 'row',  justifyContent: 'space-between', mt:5, mb: 3}}>
             <Typography variant="subtitle1" color="black">작성자 : {post.userId}</Typography>
